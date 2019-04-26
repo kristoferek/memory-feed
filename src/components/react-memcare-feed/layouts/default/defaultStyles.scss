@@ -1,0 +1,62 @@
+$container-padding: 1rem;
+$container-min-size: 190px;
+$container-min-width: 340px;
+$image-size: calc(#{$container-min-size} - 2 * #{$container-padding});
+
+.memoryFeed {
+  &Container {
+    background-color: silver;
+    display: flex;
+    flex-direction: column;
+    max-width: $container-min-width;
+    min-height: $container-min-width;
+    padding: $container-padding;
+    width: 100%;
+  }
+}
+
+.image {
+  &Section {
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
+    margin-bottom: auto;
+
+  }
+
+  &Item {
+    height: $image-size;
+    width: $image-size;
+
+    background: rgba(255, 255, 255, .2);
+    opacity: .2;
+
+    background-image: url('../../personPlaceholder.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    border: 2px solid white;
+  }
+}
+
+.titleSection {
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+  word-break: break-word;
+}
+
+.date {
+  &Section {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  &Item{
+    text-align: center;
+  }
+}
+

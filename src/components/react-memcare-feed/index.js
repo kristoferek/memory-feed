@@ -1,6 +1,8 @@
 import { Component } from 'preact';
 import axios from 'axios';
+
 import './style.scss';
+import classes from './grid.scss';
 
 import { Index } from './layouts/default';
 
@@ -8,12 +10,12 @@ export default class MemoryFeed extends Component {
   componentDidMount() {
     const { feedUrl = 'http://localhost:3000/memorial_feed.json?company=akasien'} = this.props;
     axios.get(feedUrl)
-      .then((resolve) => {
-        if (resolve.data) {
-          const response = {...resolve.data};
+      .then((response) => {
+        if (response) {
+          const { records, meta } = response.data;
           this.setState({
-            records: response.records,
-            meta: response.meta,
+            records,
+            meta,
           });
         }
       })
@@ -33,8 +35,12 @@ export default class MemoryFeed extends Component {
       return <h5>No memories yet</h5>
     }
     return (
-      <div>
-        {records && records.slice(0,6).map(record => <Index {...record}/>)}
+      <div className={classes.memoryFeedGrid}>
+        {records && records.slice(0,6).map(record => (
+          <div className={classes.memoryFeedGridItem}>
+            <Index {...record} />
+          </div>
+        ))}
       </div>
     );
   }
